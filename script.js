@@ -21,90 +21,110 @@ menu
 const heroSlides = [...document.querySelectorAll(".hero-slide")];
 const heroPagination = document.getElementById("heroPagination");
 const heroProperty = document.getElementById("heroProperty");
-const propertyLabels = [
-  ["345 Mountain Brow Road", "Waterdown, ON"],
-  ["2054 Lakeshore Road East", "Oakville, ON"],
-  ["1540 Watersedge Road", "Mississauga, ON"],
-  ["Signature Residence", "Oakville, ON"],
-];
-let heroIndex = 0,
-  heroTimer;
-heroSlides.forEach((_, i) => {
-  const b = document.createElement("button");
-  b.className = "hero-dot" + (i === 0 ? " active" : "");
-  b.textContent = String(i + 1).padStart(2, "0");
-  b.addEventListener("click", () => goHero(i));
-  heroPagination.appendChild(b);
-});
-const dots = [...document.querySelectorAll(".hero-dot")];
-function goHero(i) {
-  heroIndex = (i + heroSlides.length) % heroSlides.length;
-  heroSlides.forEach((s, n) => s.classList.toggle("active", n === heroIndex));
-  dots.forEach((d, n) => d.classList.toggle("active", n === heroIndex));
-  heroProperty.innerHTML = `${propertyLabels[heroIndex][0]} <span>${propertyLabels[heroIndex][1]}</span>`;
-  clearInterval(heroTimer);
+if (heroSlides.length && heroPagination && heroProperty) {
+  const propertyLabels = [
+    ["77 BLACKTHORN LANE", "BRAMPTON, ON"],
+    ["SPACIOUS DETACHED HOME", "Oakville, ON"],
+    ["TIMELESS BRICK RESIDENCE", "ETOBICOKE, ON"],
+    ["CONTEMPORARY FAMILY HOME", "BURLINGTON, ON"],
+  ];
+  const dots = [];
+  let heroIndex = 0;
+  let heroTimer;
+
+  function goHero(i) {
+    heroIndex = (i + heroSlides.length) % heroSlides.length;
+    heroSlides.forEach((slide, index) =>
+      slide.classList.toggle("active", index === heroIndex),
+    );
+    dots.forEach((dot, index) =>
+      dot.classList.toggle("active", index === heroIndex),
+    );
+    heroProperty.innerHTML = `${propertyLabels[heroIndex][0]} <span>${propertyLabels[heroIndex][1]}</span>`;
+    clearInterval(heroTimer);
+    heroTimer = setInterval(() => goHero(heroIndex + 1), 6000);
+  }
+
+  heroSlides.forEach((_, index) => {
+    const button = document.createElement("button");
+    button.className = "hero-dot" + (index === 0 ? " active" : "");
+    button.textContent = String(index + 1).padStart(2, "0");
+    button.addEventListener("click", () => goHero(index));
+    heroPagination.appendChild(button);
+    dots.push(button);
+  });
+
   heroTimer = setInterval(() => goHero(heroIndex + 1), 6000);
 }
-heroTimer = setInterval(() => goHero(heroIndex + 1), 6000);
 
 const listingTrack = document.getElementById("listingTrack");
-document.getElementById("listingPrev").addEventListener("click", () =>
-  listingTrack.scrollBy({
-    left: -listingTrack.clientWidth * 0.72,
-    behavior: "smooth",
-  }),
-);
-document.getElementById("listingNext").addEventListener("click", () =>
-  listingTrack.scrollBy({
-    left: listingTrack.clientWidth * 0.72,
-    behavior: "smooth",
-  }),
-);
 
-const testimonials = [
-  [
-    "Professional, strategic and deeply knowledgeable. The team made the process clear from beginning to end and delivered the level of care we hoped for.",
-    "Sara D.",
-  ],
-  [
-    "Communication was prompt, the advice was thoughtful and every detail felt organized. We always knew what the next step was.",
-    "Thomas B.",
-  ],
-  [
-    "From presentation to negotiation, the process felt polished and transparent. The marketing made our property stand out immediately.",
-    "Ayan F.",
-  ],
-  [
-    "Patient, responsive and never pushy. We felt genuinely represented throughout the entire buying experience.",
-    "Megah W.",
-  ],
-];
-let testIndex = 0;
+const listingPrev = document.getElementById("listingPrev");
+const listingNext = document.getElementById("listingNext");
+
+if (listingPrev && listingNext && listingTrack) {
+  listingPrev.addEventListener("click", () =>
+    listingTrack.scrollBy({
+      left: -listingTrack.clientWidth * 0.72,
+      behavior: "smooth",
+    }),
+  );
+
+  listingNext.addEventListener("click", () =>
+    listingTrack.scrollBy({
+      left: listingTrack.clientWidth * 0.72,
+      behavior: "smooth",
+    }),
+  );
+}
+
 const q = document.getElementById("testimonialQuote"),
   n = document.getElementById("testimonialName"),
   c = document.getElementById("testCount");
-function showTest(i) {
-  testIndex = (i + testimonials.length) % testimonials.length;
-  q.animate(
+const testPrev = document.getElementById("testPrev");
+const testNext = document.getElementById("testNext");
+
+if (q && n && c && testPrev && testNext) {
+  const testimonials = [
     [
-      { opacity: 0, transform: "translateY(8px)" },
-      { opacity: 1, transform: "translateY(0)" },
+      "Professional, strategic and deeply knowledgeable. The team made the process clear from beginning to end and delivered the level of care we hoped for.",
+      "Sara D.",
     ],
-    { duration: 350 },
-  );
-  q.textContent = testimonials[testIndex][0];
-  n.textContent = "— " + testimonials[testIndex][1];
-  c.textContent =
-    String(testIndex + 1).padStart(2, "0") +
-    " / " +
-    String(testimonials.length).padStart(2, "0");
+    [
+      "Communication was prompt, the advice was thoughtful and every detail felt organized. We always knew what the next step was.",
+      "Thomas B.",
+    ],
+    [
+      "From presentation to negotiation, the process felt polished and transparent. The marketing made our property stand out immediately.",
+      "Ayan F.",
+    ],
+    [
+      "Patient, responsive and never pushy. We felt genuinely represented throughout the entire buying experience.",
+      "Megah W.",
+    ],
+  ];
+  let testIndex = 0;
+
+  function showTest(i) {
+    testIndex = (i + testimonials.length) % testimonials.length;
+    q.animate(
+      [
+        { opacity: 0, transform: "translateY(8px)" },
+        { opacity: 1, transform: "translateY(0)" },
+      ],
+      { duration: 350 },
+    );
+    q.textContent = testimonials[testIndex][0];
+    n.textContent = "— " + testimonials[testIndex][1];
+    c.textContent =
+      String(testIndex + 1).padStart(2, "0") +
+      " / " +
+      String(testimonials.length).padStart(2, "0");
+  }
+
+  testPrev.addEventListener("click", () => showTest(testIndex - 1));
+  testNext.addEventListener("click", () => showTest(testIndex + 1));
 }
-document
-  .getElementById("testPrev")
-  .addEventListener("click", () => showTest(testIndex - 1));
-document
-  .getElementById("testNext")
-  .addEventListener("click", () => showTest(testIndex + 1));
 
 document.querySelectorAll(".faq-item button").forEach((btn) =>
   btn.addEventListener("click", () => {

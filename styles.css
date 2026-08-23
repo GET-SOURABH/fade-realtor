@@ -39,7 +39,7 @@ img {
   object-fit: cover;
 }
 .section-pad {
-  padding: 8.5rem 6vw;
+  padding: 10rem 6vw;
 }
 .display {
   font-family: var(--serif);
@@ -97,7 +97,7 @@ img {
 }
 
 .outline-button {
-  margin-top: 3rem;
+  margin-top: 2rem;
   display: inline-flex;
   gap: 1rem;
   align-items: center;
@@ -357,10 +357,12 @@ img {
   margin-top: 2.2rem;
 }
 .text-link {
+  position: relative;
+  display: inline-block;
   font-size: 0.8rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.6);
+  color: rgba(255, 255, 255, 0.85);
   padding-bottom: 0.35rem;
 }
 .hero-property {
@@ -416,7 +418,24 @@ img {
   margin: 0 0 2rem;
 }
 .listings {
+  display: grid;
+  grid-template-columns: minmax(0, min(43vw, 620px)) minmax(280px, 420px);
+  column-gap: clamp(3rem, 8vw, 10rem);
+  align-items: start;
+  justify-content: space-between;
   overflow: hidden;
+}
+.listings .section-heading {
+  grid-column: 1 / -1;
+}
+.all-listings-button {
+  grid-column: 1;
+  grid-row: 3;
+  margin-top: 3rem;
+  padding-left: 0;
+}
+.all-listings-button .outline-button {
+  margin-top: 0;
 }
 .section-heading {
   margin-bottom: 3.5rem;
@@ -434,27 +453,66 @@ img {
   cursor: pointer;
 }
 .listing-track {
-  display: flex;
-  gap: 1.4rem;
-  overflow-x: auto;
-  scrollbar-width: none;
-  scroll-snap-type: x mandatory;
-  padding-bottom: 1rem;
+  grid-column: 1;
+  grid-row: 2;
+  align-items: flex-start;
+  display: block;
+  overflow-x: hidden;
+  padding-bottom: 0;
+}
+.property-card {
+  display: inline-block;
 }
 .listing-track::-webkit-scrollbar {
   display: none;
 }
 .property-card {
+  width: min(43vw, 620px);
   min-width: min(43vw, 620px);
   scroll-snap-align: start;
 }
+.listings .property-card {
+  width: 100%;
+  min-width: 0;
+}
 .property-image {
-  height: 460px;
+  height: 380px;
   position: relative;
   overflow: hidden;
 }
 .property-image img {
   transition: 0.6s;
+}
+.featured-property-copy {
+  grid-column: 2;
+  grid-row: 2;
+  max-width: 420px;
+  margin: 3.5rem 0 0;
+  padding: 0;
+  position: relative;
+  z-index: 2;
+}
+
+.featured-property-copy h3 {
+  font-family: "Playfair Display", serif;
+  font-size: 2.4rem;
+  font-weight: 400;
+  margin: 1.5rem 0;
+}
+
+.featured-property-copy p {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #555;
+  margin-bottom: 1.5rem;
+}
+
+.featured-property-copy span {
+  display: block;
+  font-size: 0.9rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 2rem;
 }
 .property-card:hover img {
   transform: scale(1.035);
@@ -485,6 +543,125 @@ img {
 }
 .property-meta small {
   color: var(--muted);
+}
+.listings-page,
+.property-page {
+  background: var(--cream);
+}
+.listings-page .site-header {
+  background: rgba(251, 250, 247, 0.96);
+  backdrop-filter: blur(12px);
+  color: var(--ink);
+  border-color: var(--line);
+}
+.listings-page .site-header .connect-pill {
+  --pill-fill: var(--forest);
+}
+.listings-page .site-header .connect-pill:hover {
+  color: #fff;
+}
+.listings-page-main {
+  padding-top: 92px;
+}
+.all-listings-section {
+  min-height: calc(100vh - 92px);
+  background: var(--cream);
+}
+.listings-page-heading {
+  margin-bottom: 4rem;
+}
+.all-listings-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  column-gap: 1.5rem;
+  row-gap: 3.5rem;
+}
+.all-listings-grid .property-card {
+  display: block;
+  width: 100%;
+  min-width: 0;
+}
+.property-card-link {
+  display: block;
+}
+.property-card-link:focus-visible {
+  outline: 2px solid var(--forest);
+  outline-offset: 5px;
+}
+.property-hero-content {
+  right: 6vw;
+  max-width: none;
+}
+.property-hero-title-row {
+  display: grid;
+  grid-template-columns: minmax(0, 720px) minmax(220px, 1fr);
+  gap: clamp(3rem, 8vw, 10rem);
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+.property-hero-content h1 {
+  margin-bottom: 0;
+  font-size: clamp(3.7rem, 6.2vw, 6.8rem);
+}
+.property-hero-content > p {
+  max-width: 600px;
+  line-height: 1.7;
+}
+.property-hero-summary {
+  position: static;
+  justify-self: end;
+  color: #fff;
+  text-align: right;
+}
+.property-hero-summary.reveal {
+  transform: translateY(28px);
+}
+.property-hero-summary.reveal.visible {
+  transform: none;
+}
+.property-hero-summary .property-hero-price {
+  margin: 0 0 1rem;
+  font-family: var(--serif);
+  font-size: clamp(2.8rem, 4.2vw, 4.8rem);
+  font-weight: 400;
+  line-height: 1;
+}
+.property-hero-summary .property-hero-facts {
+  margin: 0;
+  font-size: 0.75rem;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+.property-hero-summary .property-hero-facts span {
+  display: inline-block;
+  margin: 0 0.65rem;
+  color: rgba(255, 255, 255, 0.55);
+}
+.property-gallery-section {
+  background: var(--paper);
+}
+.property-gallery-heading {
+  margin-bottom: 4rem;
+}
+.property-gallery-heading .display {
+  font-size: clamp(3rem, 5vw, 5.2rem);
+}
+.property-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+.property-gallery-item {
+  aspect-ratio: 3 / 2;
+  margin: 0;
+  overflow: hidden;
+  background: var(--cream);
+}
+.property-gallery-item img {
+  transition: transform 0.55s ease;
+}
+.property-gallery-item:hover img {
+  transform: scale(1.025);
 }
 .press-strip {
   padding: 4.8rem 0;
@@ -684,6 +861,17 @@ img {
 .light-btn:hover {
   background: #fff;
   color: var(--ink);
+}
+.light-btn {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.light-btn::after {
+  background: #ffffff;
+}
+
+.light-btn:hover {
+  color: #ffffff;
 }
 .testimonials {
   background: #fff;
@@ -958,6 +1146,23 @@ img {
   transform: none;
 }
 @media (max-width: 1100px) {
+  .listings {
+    grid-template-columns: minmax(0, 1.25fr) minmax(260px, 0.75fr);
+    column-gap: 3rem;
+  }
+  .all-listings-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .property-gallery-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .property-hero-title-row {
+    grid-template-columns: minmax(0, 55vw) minmax(180px, 1fr);
+    gap: clamp(2rem, 6vw, 5rem);
+  }
+  .property-hero-summary .property-hero-price {
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+  }
   .desktop-nav {
     display: none;
   }
@@ -995,6 +1200,88 @@ img {
   }
 }
 @media (max-width: 760px) {
+  .listings {
+    display: block;
+  }
+
+  .listings-page-main {
+    padding-top: 74px;
+  }
+
+  .all-listings-section {
+    min-height: calc(100vh - 74px);
+  }
+
+  .listings-page-heading {
+    margin-bottom: 3rem;
+  }
+
+  .all-listings-grid {
+    grid-template-columns: 1fr;
+    row-gap: 3rem;
+  }
+
+  .hero.property-detail-hero {
+    height: 100svh;
+    min-height: 780px;
+  }
+
+  .property-detail-hero .property-hero-content {
+    top: 7rem;
+    right: 6vw;
+    bottom: auto;
+    max-width: none;
+  }
+
+  .property-detail-hero .property-hero-content h1 {
+    font-size: clamp(3.1rem, 13vw, 4.7rem);
+  }
+
+  .property-detail-hero .property-hero-content > p {
+    line-height: 1.6;
+  }
+
+  .property-detail-hero .property-hero-content .hero-locations {
+    margin-bottom: 1.4rem;
+  }
+
+  .property-detail-hero .property-hero-content .hero-links {
+    margin-top: 1.5rem;
+  }
+
+  .property-detail-hero .property-hero-title-row {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .property-detail-hero .property-hero-summary {
+    justify-self: start;
+    text-align: left;
+  }
+
+  .property-detail-hero .hero-property {
+    display: block;
+    right: 6vw;
+    bottom: 4vh;
+  }
+
+  .property-gallery-heading {
+    margin-bottom: 3rem;
+  }
+
+  .property-gallery-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .featured-property-copy {
+    max-width: 520px;
+    margin-top: 3rem;
+  }
+
+  .all-listings-button {
+    margin-top: 2rem;
+  }
+
   .connect-section {
     grid-template-columns: 1fr;
   }
@@ -1157,7 +1444,7 @@ img {
 .text-link {
   position: relative;
   display: inline-block;
-  color: var(--ink);
+  color: rgba(255, 255, 255, 0.85);
   transition: opacity 0.3s ease;
 }
 
@@ -1168,7 +1455,7 @@ img {
   bottom: -6px;
   width: 100%;
   height: 1px;
-  background: var(--ink);
+  background: rgba(255, 255, 255, 0.7);
   transform: scaleX(1);
   transform-origin: left;
   transition: transform 0.35s ease;

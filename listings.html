@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Browse available FadeAyad Realtor property listings across the GTA and surrounding areas."
+    />
+    <title>Our Listings — FadeAyad Realtor</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="listings-page">
+    <header class="site-header" id="siteHeader">
+      <a
+        class="brand fade-brand"
+        href="index.html#top"
+        aria-label="FadeAyad-Realtor home"
+      >
+        <span class="fade-wordmark">
+          <strong>FadeAyad</strong>
+          <span class="realtor-text">REALTOR</span>
+        </span>
+      </a>
+
+      <nav class="desktop-nav" aria-label="Primary navigation">
+        <a href="index.html#about">About</a>
+        <a href="listings.html" aria-current="page">Properties</a>
+
+        <a href="index.html#buy">Buyers</a>
+        <a href="index.html#sell">Sellers</a>
+        <a href="index.html#neighbourhoods">Neighbourhoods</a>
+        <a href="index.html#journal">Media</a>
+      </nav>
+
+      <div class="header-actions">
+        <a class="connect-pill" href="index.html#contact">Let's Connect</a>
+        <button
+          class="menu-btn"
+          id="menuBtn"
+          aria-label="Open menu"
+          aria-expanded="false"
+        >
+          <span></span><span></span>
+        </button>
+      </div>
+    </header>
+
+    <aside class="mobile-menu" id="mobileMenu" aria-hidden="true">
+      <button class="menu-close" id="menuClose" aria-label="Close menu">
+        ×
+      </button>
+      <nav>
+        <a href="index.html#about">About</a>
+        <a href="listings.html" aria-current="page">Properties</a>
+
+        <a href="index.html#buy">Buyers</a>
+        <a href="index.html#sell">Sellers</a>
+        <a href="index.html#neighbourhoods">Neighbourhoods</a>
+        <a href="index.html#journal">Media</a>
+        <a href="index.html#contact">Let's Connect</a>
+      </nav>
+    </aside>
+
+    <main class="listings-page-main" id="top">
+      <section
+        class="all-listings-section section-pad"
+        aria-labelledby="listingsTitle"
+      >
+        <div class="listings-page-heading">
+          <div class="eyebrow">AVAILABLE PROPERTIES</div>
+          <h1 class="display reveal" id="listingsTitle">Our Listings</h1>
+        </div>
+
+        <div
+          class="all-listings-grid"
+          id="allListingsGrid"
+          aria-label="Available property listings"
+        ></div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <a
+            class="fade-wordmark footer-wordmark"
+            href="index.html#top"
+            aria-label="FadeAyad-Realtor home"
+          >
+            <strong>FadeAyad</strong>
+            <span class="realtor-text">REALTOR</span>
+          </a>
+        </div>
+        <div>
+          <small>OFFICE</small>
+          <p>Mississauga, Ontario</p>
+          <p>+1 (647) 686-4405</p>
+        </div>
+        <div>
+          <small>EXPLORE</small><a href="index.html#about">About</a
+          ><a href="listings.html">Properties</a
+          ><a href="index.html#neighbourhoods">Neighbourhoods</a
+          ><a href="index.html#contact">Let's Connect</a>
+        </div>
+        <div>
+          <small>FOLLOW</small
+          ><a href="https://www.instagram.com/fadeayadrealtor" target="_blank"
+            >Instagram </a
+          ><a href="https://www.facebook.com/michael.samy.9659/" target="_blank"
+            >Facebook</a
+          ><a href="https://www.youtube.com/@FadeAyad" target="_blank"
+            >YouTube</a
+          ><a href="https://vt.tiktok.com/ZS4eawYQ7/" target="_blank">Tiktok</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 FadeAyad-Realto</span><span>FADEAYAD REALTOR</span
+        ><span>Privacy · Disclaimer</span>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="listings.js"></script>
+  </body>
+</html>
