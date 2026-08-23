@@ -40,7 +40,6 @@
       </nav>
 
       <div class="header-actions">
-        <button class="search-btn" aria-label="Search">⌕</button>
         <a class="connect-pill" href="#contact">Let's Connect</a>
         <button
           class="menu-btn"
@@ -113,7 +112,7 @@
             <span>•</span>
             <a href="#neighbourhoods">GTA</a>
           </div>
-          <h1>Bringing a Luxury Real Estate Experience to Every Move</h1>
+          <h1>Guiding Every Real Estate Move With Confidence and Care</h1>
           <p>
             Elevated representation, local expertise and thoughtful marketing
             for exceptional homes across Ontario.
@@ -140,7 +139,7 @@
         <div class="eyebrow">01 / OUR APPROACH</div>
         <div class="intro-grid">
           <h2 class="display reveal">
-            Guiding Real Estate Clients For More Than 40 Years
+            Guiding Real Estate Clients For More Than 7 Years
           </h2>
           <div class="intro-copy reveal">
             <p>
@@ -266,7 +265,7 @@
         <div class="eyebrow">03 / WHERE WE WORK</div>
         <div class="section-heading row-between">
           <h2 class="display reveal">
-            Find The Perfect<br />Neighbourhood For You
+            Discover The Right<br />Neighbourhood For You
           </h2>
           <a class="underline-link" href="#">View More</a>
         </div>
@@ -302,7 +301,7 @@
         <div class="spaces-head section-pad">
           <div class="eyebrow">04 / INSPIRATION</div>
           <h2 class="display reveal">
-            Exceptional Spaces<br />That Redefine Home
+            Beautiful Spaces<br />Designed For Living
           </h2>
         </div>
         <div class="gallery-loop" aria-label="Luxury interiors gallery">
@@ -399,9 +398,9 @@
             personalized real estate guidance across Mississauga, Brampton,
             Oakville, Burlington, Etobicoke, Toronto and the GTA.
           </p>
-          <a href="#" class="outline-button light-btn"
-            >Let's Connect <span>↗</span></a
-          >
+          <a href="#contact" class="outline-button light-btn">
+            Let's Connect <span>↗</span>
+          </a>
         </div>
       </section>
 
@@ -414,7 +413,7 @@
             process clear from beginning to end and delivered the level of care
             we hoped for.
           </blockquote>
-          <p id="testimonialName">— Sarah D.</p>
+          <p id="testimonialName">— Sara D.</p>
           <div class="testimonial-controls">
             <button id="testPrev">←</button><span id="testCount">01 / 04</span
             ><button id="testNext">→</button>
@@ -425,15 +424,98 @@
       <section class="connect-section" id="contact">
         <div class="connect-copy section-pad reveal">
           <div class="eyebrow light">LET'S TALK</div>
+
           <h2 class="display">Let’s Connect</h2>
-          <p>
-            Tell us what you are looking for and discover how a tailored real
-            estate strategy can make your next move smoother.
+
+          <p class="contact-intro">
+            Tell me what you're looking for and I'll get back to you.
           </p>
-          <a class="outline-button light-btn" href="mailto:hello@example.com"
-            >Contact Us <span>↗</span></a
+
+          <form
+            class="contact-form"
+            action="https://formspree.io/f/maewkgvo"
+            method="POST"
           >
+            <div class="form-row">
+              <div class="form-field">
+                <label for="name">Full Name</label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  required
+                  placeholder="Your name"
+                />
+              </div>
+
+              <div class="form-field">
+                <label for="email">Email</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  required
+                  placeholder="Your email"
+                />
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-field">
+                <label for="phone">Phone Number</label>
+                <input
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  placeholder="Your phone number"
+                />
+              </div>
+
+              <div class="form-field">
+                <label for="service">I'm Looking To</label>
+
+                <select id="service" name="service" required>
+                  <option value="" disabled selected>Select one</option>
+                  <option value="Buy">Buy</option>
+                  <option value="Sell">Sell</option>
+                  <option value="Lease">Lease</option>
+                  <option value="Invest">Invest</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-field">
+              <label for="area">Preferred Area</label>
+
+              <select id="area" name="area">
+                <option value="" disabled selected>Select an area</option>
+                <option value="Mississauga">Mississauga</option>
+                <option value="Brampton">Brampton</option>
+                <option value="Oakville">Oakville</option>
+                <option value="Burlington">Burlington</option>
+                <option value="Etobicoke">Etobicoke</option>
+                <option value="Toronto">Toronto</option>
+                <option value="GTA">GTA</option>
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label for="message">Message</label>
+
+              <textarea
+                id="message"
+                name="message"
+                rows="4"
+                placeholder="Tell me a little about what you're looking for..."
+              ></textarea>
+            </div>
+
+            <button type="submit" class="contact-submit">
+              Send Message <span>↗</span>
+            </button>
+          </form>
         </div>
+
         <div class="connect-image">
           <img
             src="https://s3.amazonaws.com/media.reganirish.com/wp-content/uploads/2023/09/12150453/letsConnectImage-scaled.jpeg"
@@ -449,51 +531,63 @@
         <div class="faq-list">
           <div class="faq-item">
             <button>
-              What makes luxury real estate in Ontario unique?<span>+</span>
+              What can I expect when working with you?
+              <span>+</span>
             </button>
+
             <div class="faq-answer">
               <p>
-                Premium locations, waterfront opportunities, architectural
-                diversity and strong communities create a distinctive luxury
-                market across Oakville, Mississauga, Burlington, Muskoka and the
-                GTHA.
+                You can expect clear communication, personalized guidance and
+                support throughout the entire process. Whether you're buying,
+                selling, leasing or investing, the goal is to help you make
+                informed decisions with confidence.
               </p>
             </div>
           </div>
+
           <div class="faq-item">
             <button>
-              Why work with a dedicated luxury real estate team?<span>+</span>
+              What should buyers consider before choosing a property?
+              <span>+</span>
             </button>
+
             <div class="faq-answer">
               <p>
-                A specialized team brings deeper market context, private-network
-                access, stronger presentation standards and a more coordinated
-                buying or selling experience.
+                Beyond price and appearance, consider location, lifestyle,
+                future plans, property condition and long-term value. I'll help
+                you compare your options and understand what makes the most
+                sense for your needs and budget.
               </p>
             </div>
           </div>
+
           <div class="faq-item">
             <button>
-              Which Ontario regions are best for luxury homes?<span>+</span>
+              How do you prepare a home for a successful sale?
+              <span>+</span>
             </button>
+
             <div class="faq-answer">
               <p>
-                The right area depends on lifestyle: Oakville for established
-                prestige, Mississauga for urban convenience, Burlington for
-                family-friendly lakeside living and Muskoka for retreat-style
-                waterfront properties.
+                A successful sale starts with the right pricing, presentation
+                and marketing strategy. I'll help position your property
+                effectively, highlight its strongest features and create a plan
+                designed to attract qualified buyers.
               </p>
             </div>
           </div>
+
           <div class="faq-item">
             <button>
-              How is a luxury home marketed effectively?<span>+</span>
+              Can you help with leasing and investment properties?
+              <span>+</span>
             </button>
+
             <div class="faq-answer">
               <p>
-                High-end photography, cinematic video, editorial storytelling,
-                targeted digital campaigns, agent networks and global
-                syndication work together to maximize qualified exposure.
+                Yes. Whether you're looking for a rental, leasing your property
+                or exploring an investment opportunity, I can help you evaluate
+                options and navigate the process from search to closing.
               </p>
             </div>
           </div>
@@ -515,8 +609,8 @@
         </div>
         <div>
           <small>OFFICE</small>
-          <p>1320 Cornwall Rd Unit 103<br />Oakville, ON L6J 7W5</p>
-          <p>905.842.7677</p>
+          <p>Mississauga, Ontario</p>
+          <p>+1 (647) 686-4405</p>
         </div>
         <div>
           <small>EXPLORE</small><a href="#about">About</a
@@ -525,13 +619,18 @@
           ><a href="#contact">Let's Connect</a>
         </div>
         <div>
-          <small>FOLLOW</small><a href="#">Instagram</a><a href="#">Facebook</a
-          ><a href="#">LinkedIn</a><a href="#">YouTube</a>
+          <small>FOLLOW</small
+          ><a href="https://www.instagram.com/fadeayadrealtor" target="_blank"
+            >Instagram </a
+          ><a href="https://www.facebook.com/michael.samy.9659/" target="_blank"
+            >Facebook</a
+          ><a href="https://www.youtube.com/@FadeAyad" target="_blank"
+            >YouTube</a
+          ><a href="https://vt.tiktok.com/ZS4eawYQ7/" target="_blank">Tiktok</a>
         </div>
       </div>
       <div class="footer-bottom">
-        <span>© 2026 FadeAyad-Realto</span
-        ><span>RE/MAX ESCARPMENT REALTY INC.</span
+        <span>© 2026 FadeAyad-Realto</span><span>FADEAYAD REALTOR</span
         ><span>Privacy · Disclaimer</span>
       </div>
     </footer>

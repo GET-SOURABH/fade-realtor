@@ -67,12 +67,35 @@ img {
 }
 .underline-link {
   display: inline-block;
-  border-bottom: 1px solid currentColor;
   padding-bottom: 0.35rem;
   font-size: 0.86rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
+
+  position: relative;
+  transition: opacity 0.3s ease;
 }
+.underline-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(1);
+  transform-origin: left;
+  transition: transform 0.35s ease;
+}
+
+.underline-link:hover {
+  opacity: 0.65;
+}
+
+.underline-link:hover::after {
+  transform: scaleX(0.4);
+}
+
 .outline-button {
   margin-top: 3rem;
   display: inline-flex;
@@ -179,13 +202,39 @@ img {
   font-size: 1.6rem;
 }
 .connect-pill {
+  --pill-fill: #fff;
+
   border: 1px solid currentColor;
   border-radius: 999px;
   padding: 0.7rem 1rem;
+
   font-size: 0.7rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
+
+  background: linear-gradient(90deg, var(--pill-fill), var(--pill-fill)) left /
+    0% 100% no-repeat;
+
+  transition:
+    background-size 0.35s ease,
+    color 0.35s ease,
+    border-color 0.35s ease;
 }
+
+.connect-pill:hover {
+  background-size: 100% 100%;
+  color: var(--ink);
+  border-color: var(--pill-fill);
+}
+
+.site-header.scrolled .connect-pill {
+  --pill-fill: var(--forest);
+}
+
+.site-header.scrolled .connect-pill:hover {
+  color: #fff;
+}
+
 .menu-btn {
   display: none;
   width: 38px;
@@ -679,22 +728,114 @@ img {
   grid-template-columns: 1fr 1fr;
   background: var(--forest);
   color: #fff;
-  min-height: 680px;
+  min-height: 850px;
 }
+
 .connect-copy {
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
+
 .connect-copy .display {
-  margin-bottom: 2rem;
+  font-size: clamp(3rem, 4.5vw, 5rem);
+  margin-bottom: 1rem;
 }
-.connect-copy p {
+
+.connect-copy .contact-intro {
   max-width: 520px;
-  color: rgba(255, 255, 255, 0.78);
+  margin: 0 0 2.2rem;
+  color: rgba(255, 255, 255, 0.72);
 }
+
 .connect-image {
-  min-height: 680px;
+  min-height: 850px;
+}
+
+.contact-form {
+  width: 100%;
+  max-width: 620px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.2rem;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.25rem;
+}
+
+.form-field label {
+  margin-bottom: 0.45rem;
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.form-field input,
+.form-field select,
+.form-field textarea {
+  width: 100%;
+  border: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 0;
+  background: transparent;
+  color: #fff;
+  padding: 0.7rem 0;
+  font-family: var(--sans);
+  font-size: 0.95rem;
+  outline: none;
+}
+
+.form-field input::placeholder,
+.form-field textarea::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.form-field input:focus,
+.form-field select:focus,
+.form-field textarea:focus {
+  border-bottom-color: #fff;
+}
+
+.form-field select {
+  cursor: pointer;
+}
+
+.form-field select option {
+  color: #202522;
+  background: #fff;
+}
+
+.form-field textarea {
+  resize: vertical;
+}
+
+.contact-submit {
+  width: 100%;
+  margin-top: 0.7rem;
+  padding: 1rem 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  background: transparent;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+.contact-submit:hover {
+  background: #fff;
+  color: var(--ink);
 }
 .faq {
   background: var(--cream);
@@ -854,6 +995,22 @@ img {
   }
 }
 @media (max-width: 760px) {
+  .connect-section {
+    grid-template-columns: 1fr;
+  }
+
+  .connect-copy {
+    padding: 5rem 6vw;
+  }
+
+  .connect-image {
+    min-height: 420px;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
   .section-pad {
     padding: 6rem 6vw;
   }
@@ -970,4 +1127,57 @@ img {
   .commercial {
     min-height: 800px;
   }
+}
+
+.footer a {
+  position: relative;
+  color: rgba(255, 255, 255, 0.75);
+  transition: color 0.3s ease;
+}
+
+.footer a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0;
+  height: 1px;
+  background: #fff;
+  transition: width 0.3s ease;
+}
+
+.footer a:hover {
+  color: #fff;
+}
+
+.footer a:hover::after {
+  width: 45%;
+}
+
+.text-link {
+  position: relative;
+  display: inline-block;
+  color: var(--ink);
+  transition: opacity 0.3s ease;
+}
+
+.text-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 100%;
+  height: 1px;
+  background: var(--ink);
+  transform: scaleX(1);
+  transform-origin: left;
+  transition: transform 0.35s ease;
+}
+
+.text-link:hover {
+  opacity: 0.65;
+}
+
+.text-link:hover::after {
+  transform: scaleX(0.4);
 }
