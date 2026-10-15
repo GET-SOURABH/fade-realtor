@@ -14,8 +14,10 @@
 * {
   box-sizing: border-box;
 }
-html {
-  scroll-behavior: smooth;
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
 }
 body {
   margin: 0;
@@ -912,6 +914,7 @@ img {
   color: var(--muted);
 }
 .connect-section {
+  scroll-margin-top: 92px;
   display: grid;
   grid-template-columns: 1fr 1fr;
   background: var(--forest);
