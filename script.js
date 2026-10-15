@@ -1,7 +1,9 @@
 const header = document.getElementById("siteHeader");
-window.addEventListener("scroll", () =>
-  header.classList.toggle("scrolled", window.scrollY > 40),
-);
+function updateHeader() {
+  header.classList.toggle("scrolled", window.scrollY > 40);
+}
+updateHeader();
+window.addEventListener("scroll", updateHeader);
 
 const menuBtn = document.getElementById("menuBtn");
 const menu = document.getElementById("mobileMenu");
