@@ -97,7 +97,23 @@
           class="all-listings-grid"
           id="allListingsGrid"
           aria-label="Available property listings"
-        ></div>
+        >
+          <template id="propertyCardTemplate">
+            <article class="property-card">
+              <a class="property-card-link">
+                <div class="property-image">
+                  <img alt="" loading="lazy" />
+                  <span class="tag"></span>
+                </div>
+                <div class="property-meta">
+                  <h3></h3>
+                  <p></p>
+                  <small></small>
+                </div>
+              </a>
+            </article>
+          </template>
+        </div>
       </section>
     </main>
 
@@ -142,6 +158,7 @@
     </footer>
 
     <script src="script.js"></script>
+    <script src="properties-data.js"></script>
     <script src="listings.js"></script>
   </body>
 </html>

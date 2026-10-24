@@ -16,7 +16,7 @@
     />
     <link rel="stylesheet" href="styles.css" />
   </head>
-  <body class="property-page">
+  <body class="property-page" data-property-id="77-blackthorn-lane">
     <header class="site-header" id="siteHeader">
       <address class="header-contact" aria-label="Contact Fade Ayad">
         <a href="tel:+16476864405">
@@ -90,34 +90,29 @@
       >
         <div
           class="hero-slide active"
-          style="--bg: url(&quot;assets/images/1.png&quot;)"
           role="img"
-          aria-label="Front exterior of 77 Blackthorn Lane"
+          aria-label="Property exterior"
         ></div>
         <div class="hero-overlay"></div>
 
         <div class="hero-content property-hero-content reveal">
           <div class="hero-locations">
-            <span>For Sale</span>
+            <span data-property-status></span>
             <span>•</span>
-            <span>Brampton, Ontario</span>
+            <span data-property-location></span>
           </div>
           <div class="property-hero-title-row">
-            <h1 id="propertyTitle">77 Blackthorn Lane</h1>
+            <h1 id="propertyTitle"></h1>
 
             <div
               class="property-hero-summary reveal"
               aria-label="Property details"
             >
-              <p class="property-hero-price">$949,000</p>
-              <p class="property-hero-facts">4 Beds <span>|</span> 3 Baths</p>
+              <p class="property-hero-price"></p>
+              <p class="property-hero-facts"><span>|</span></p>
             </div>
           </div>
-          <p>
-            A spacious 4-level detached home designed for comfortable family
-            living, featuring a bright kitchen, private patio access and a
-            versatile multi-level layout.
-          </p>
+          <p data-property-description></p>
           <div class="hero-links">
             <a href="index.html#contact" class="text-link">
               Let's Connect <span>↗</span>
@@ -126,7 +121,7 @@
         </div>
 
         <div class="hero-property">
-          77 Blackthorn Lane <span>Brampton, ON</span>
+          <span></span>
         </div>
       </section>
 
@@ -142,8 +137,8 @@
         <div
           class="property-gallery-grid"
           id="propertyGallery"
-          data-property-gallery="77-blackthorn-lane"
-          aria-label="77 Blackthorn Lane image gallery"
+          data-property-gallery
+          aria-label="Property image gallery"
         ></div>
       </section>
     </main>
@@ -188,7 +183,8 @@
       </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="properties-data.js"></script>
     <script src="property.js"></script>
+    <script src="script.js"></script>
   </body>
 </html>

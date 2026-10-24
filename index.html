@@ -148,7 +148,7 @@
       <section class="service-pair">
         <article class="service-card" id="buy">
           <div class="service-image">
-            <img src="assets/images/36.JPG" alt="Buy with us" />
+            <img src="assets/images/36.jpg" alt="Buy with us" />
           </div>
           <div class="service-copy">
             <div class="eyebrow">SELLERS</div>
@@ -162,7 +162,7 @@
         </article>
         <article class="service-card reverse" id="sell">
           <div class="service-image">
-            <img src="assets/images/35.JPG" alt="List with us" />
+            <img src="assets/images/35.jpg" alt="List with us" />
           </div>
           <div class="service-copy">
             <div class="eyebrow">BUYERS</div>
@@ -202,43 +202,31 @@
         </div>
 
         <div class="listing-track" id="listingTrack">
-          <article class="property-card">
-            <a
-              class="property-card-link"
-              href="property-77-blackthorn-lane.html"
-              aria-label="View 77 Blackthorn Lane property details"
-            >
-              <div class="property-image">
-                <img
-                  src="assets/images/1.png"
-                  alt="77 Blackthorn Lane"
-                  loading="lazy"
-                /><span class="tag">For Sale</span>
+          <template id="propertyCardTemplate">
+            <article class="property-card">
+              <a class="property-card-link">
+                <div class="property-image">
+                  <img alt="" loading="lazy" /><span class="tag"></span>
+                </div>
+              </a>
+              <div class="property-meta">
+                <h3></h3>
+                <p></p>
+                <small></small>
               </div>
-            </a>
-            <div class="property-meta">
-              <h3>$949,000</h3>
-              <p>77 Blackthorn Lane</p>
-              <small>Brampton, ON L6V 3L1 · 4 Beds · 3 Baths</small>
-            </div>
-          </article>
+            </article>
+          </template>
         </div>
         <div class="featured-property-copy">
           <div class="eyebrow">FEATURED PROPERTY</div>
 
-          <h3>77 Blackthorn Lane</h3>
+          <h3></h3>
 
-          <p>
-            A spacious 4-level detached home designed for comfortable family
-            living, featuring a bright kitchen, private patio access and a
-            versatile multi-level layout.
-          </p>
+          <p></p>
 
-          <span>Brampton, Ontario</span>
+          <span></span>
 
-          <a class="underline-link" href="property-77-blackthorn-lane.html"
-            >View Property</a
-          >
+          <a class="underline-link">View Property</a>
         </div>
         <div class="all-listings-button">
           <a class="outline-button" href="listings.html">
@@ -598,6 +586,8 @@
       </div>
     </footer>
 
+    <script src="properties-data.js"></script>
+    <script src="listings.js"></script>
     <script src="script.js"></script>
   </body>
 </html>

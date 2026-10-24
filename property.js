@@ -1,38 +1,71 @@
-const propertyGalleries = {
-  "77-blackthorn-lane": {
-    title: "77 Blackthorn Lane",
-    images: [
-      {
-        src: "assets/images/1.png",
-        alt: "Front exterior of 77 Blackthorn Lane",
-      },
-      ...Array.from({ length: 37 }, (_, index) => {
-        const imageNumber = index + 2;
+(() => {
+  const data = window.PropertyListings;
+  const page = document.querySelector("[data-property-id]");
+  if (!data || !page) return;
+  const property = data.getById(page.dataset.propertyId);
+  const gallery = page.querySelector("[data-property-gallery]");
 
-        return {
-          src: `assets/images/${imageNumber}.JPG`,
-          alt: `77 Blackthorn Lane gallery image ${imageNumber}`,
-        };
-      }),
-    ],
-  },
-};
+  function setText(selector, value) {
+    const element = page.querySelector(selector);
+    if (element) element.textContent = value || "";
+  }
 
-const propertyGallery = document.querySelector("[data-property-gallery]");
+  if (!property) {
+    setText("#propertyTitle", "Property not found");
+    if (gallery) gallery.replaceChildren();
+    console.warn(`Property ID not found: ${page.dataset.propertyId}`);
+    return;
+  }
 
-if (propertyGallery) {
-  const propertyKey = propertyGallery.dataset.propertyGallery;
-  const gallery = propertyGalleries[propertyKey];
+  const title = property.title || property.address || "";
+  setText("#propertyTitle", title);
+  setText("[data-property-status]", property.status);
+  setText("[data-property-location]", data.location(property, true));
+  setText(".property-hero-price", data.formatPrice(property));
+  setText("[data-property-description]", property.description);
+
+  const facts = page.querySelector(".property-hero-facts");
+  if (facts) {
+    const labels = data.facts(property);
+    const separator = facts.querySelector("span");
+    facts.replaceChildren();
+    labels.forEach((label, index) => {
+      if (index && separator) facts.append(" ", separator, " ");
+      facts.append(document.createTextNode(label));
+    });
+  }
+
+  const caption = page.querySelector(".hero-property");
+  if (caption) {
+    const region = caption.querySelector("span");
+    region.textContent = data.location(property);
+    caption.replaceChildren(document.createTextNode(`${property.address || title} `), region);
+  }
+
+  const hero = page.querySelector(".property-detail-hero .hero-slide");
+  const cover = data.localPath(property.coverImage);
+  if (hero) {
+    if (cover) hero.style.setProperty("--bg", `url(${JSON.stringify(cover)})`);
+    hero.setAttribute("aria-label", property.coverImageAlt || title);
+  }
 
   if (gallery) {
-    propertyGallery.innerHTML = gallery.images
-      .map(
-        (image) => `
-          <figure class="property-gallery-item">
-            <img src="${image.src}" alt="${image.alt}" loading="lazy" />
-          </figure>
-        `,
-      )
-      .join("");
+    gallery.setAttribute("aria-label", `${title} image gallery`);
+    const images = Array.isArray(property.galleryImages) ? property.galleryImages : [];
+    const galleryImages = images.length ? images : cover ? [{ src: cover, alt: property.coverImageAlt || title }] : [];
+    const fragment = document.createDocumentFragment();
+    galleryImages.forEach((image) => {
+      const src = data.localPath(image && image.src);
+      if (!src) return;
+      const figure = document.createElement("figure");
+      figure.className = "property-gallery-item";
+      const photo = document.createElement("img");
+      photo.src = src;
+      photo.alt = image.alt || title;
+      photo.loading = "lazy";
+      figure.appendChild(photo);
+      fragment.appendChild(figure);
+    });
+    gallery.replaceChildren(fragment);
   }
-}
+})();
