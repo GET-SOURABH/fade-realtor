@@ -195,6 +195,88 @@
     return card;
   }
 
+  function initializeInstagramCarousel(grid) {
+    const mobile = window.matchMedia("(max-width: 760px)");
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const wrapper = element("div", "instagram-carousel");
+    const arrows = element("div", "instagram-carousel-arrows");
+    const previous = element("button", "instagram-carousel-arrow instagram-carousel-arrow--previous", "‹");
+    const next = element("button", "instagram-carousel-arrow instagram-carousel-arrow--next", "›");
+    const pagination = element("div", "instagram-carousel-dots");
+    let cards = [];
+    let dots = [];
+    let activeIndex = 0;
+    let frame = 0;
+
+    grid.id = grid.id || "instagram-reels";
+    arrows.setAttribute("role", "group");
+    arrows.setAttribute("aria-label", "Instagram Reel navigation");
+    pagination.setAttribute("role", "group");
+    pagination.setAttribute("aria-label", "Choose an Instagram Reel");
+    [previous, next].forEach((button, index) => {
+      button.type = "button";
+      button.setAttribute("aria-label", `${index ? "Next" : "Previous"} Instagram Reel`);
+      button.setAttribute("aria-controls", grid.id);
+    });
+    arrows.append(previous, next);
+    grid.before(wrapper);
+    wrapper.append(grid, arrows, pagination);
+
+    function update() {
+      frame = 0;
+      if (!mobile.matches || !cards.length) return;
+      const left = grid.getBoundingClientRect().left;
+      activeIndex = cards.reduce((nearest, card, index) =>
+        Math.abs(card.getBoundingClientRect().left - left) <
+        Math.abs(cards[nearest].getBoundingClientRect().left - left) ? index : nearest, 0);
+      previous.hidden = activeIndex === 0;
+      next.hidden = activeIndex === cards.length - 1;
+      dots.forEach((dot, index) => {
+        if (index === activeIndex) dot.setAttribute("aria-current", "true");
+        else dot.removeAttribute("aria-current");
+      });
+      if ((previous.hidden && document.activeElement === previous) ||
+          (next.hidden && document.activeElement === next)) {
+        dots[activeIndex].focus({ preventScroll: true });
+      }
+    }
+
+    function queueUpdate() {
+      if (!frame) frame = requestAnimationFrame(update);
+    }
+
+    function navigate(index) {
+      if (!mobile.matches || !cards.length) return;
+      const card = cards[Math.max(0, Math.min(index, cards.length - 1))];
+      grid.scrollTo({
+        left: grid.scrollLeft + card.getBoundingClientRect().left - grid.getBoundingClientRect().left,
+        behavior: reducedMotion.matches ? "instant" : "smooth",
+      });
+    }
+
+    function refresh() {
+      cards = Array.from(grid.children).filter((card) => card.classList.contains("social-media-card--instagram"));
+      dots = cards.map((card, index) => {
+        const dot = element("button", "instagram-carousel-dot");
+        dot.type = "button";
+        dot.setAttribute("aria-label", `Go to Instagram Reel ${index + 1} of ${cards.length}`);
+        dot.setAttribute("aria-controls", grid.id);
+        dot.addEventListener("click", () => navigate(index));
+        return dot;
+      });
+      pagination.replaceChildren(...dots);
+      arrows.hidden = pagination.hidden = cards.length < 2;
+      update();
+    }
+
+    previous.addEventListener("click", () => navigate(activeIndex - 1));
+    next.addEventListener("click", () => navigate(activeIndex + 1));
+    grid.addEventListener("scroll", queueUpdate, { passive: true });
+    window.addEventListener("resize", queueUpdate);
+    new MutationObserver(refresh).observe(grid, { childList: true });
+    refresh();
+  }
+
   section.querySelectorAll("[data-social-profile]").forEach((link) => {
     link.href = data.profiles[link.dataset.socialProfile];
     link.setAttribute("aria-label", `${link.textContent.trim()} (opens in a new tab)`);
@@ -205,5 +287,6 @@
       .filter((item) => item.platform === grid.dataset.socialGrid)
       .sort((a, b) => a.displayOrder - b.displayOrder)
       .forEach((item, index) => grid.appendChild(renderCard(item, index)));
+    if (grid.dataset.socialGrid === "instagram") initializeInstagramCarousel(grid);
   });
 })();

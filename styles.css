@@ -1284,6 +1284,18 @@ img {
   align-items: center;
   gap: 0.5rem;
 }
+.instagram-carousel {
+  display: contents;
+}
+.instagram-carousel-arrows,
+.instagram-carousel-dots {
+  display: none;
+}
+.instagram-carousel-arrows[hidden],
+.instagram-carousel-arrow[hidden],
+.instagram-carousel-dots[hidden] {
+  display: none;
+}
 @media (max-width: 760px) {
   .social-media-heading {
     gap: 1rem;
@@ -1293,26 +1305,89 @@ img {
     gap: 2.5rem;
   }
   .social-media-grid--instagram {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 0.75rem;
+    grid-template-columns: none;
+    grid-auto-flow: column;
+    grid-auto-columns: 100%;
+    gap: 1rem;
+    width: 100%;
+    min-width: 0;
     max-width: 420px;
     margin-inline: auto;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: thin;
+    scrollbar-color: var(--gold) var(--line);
+    padding-bottom: 0.75rem;
     overflow-wrap: anywhere;
   }
-  .social-media-card--instagram .social-media-preview {
-    padding: 0.75rem;
-  }
-  .social-media-card--instagram .social-media-badge {
-    top: 0.75rem;
-    left: 0.5rem;
-    gap: 0.25rem;
-    font-size: 0.6rem;
-  }
-  .social-media-card--instagram .social-media-brand strong {
-    font-size: 1.25rem;
+  .social-media-card--instagram {
+    scroll-snap-align: start;
   }
   .social-media-card--instagram .underline-link {
     max-width: 100%;
+  }
+  .instagram-carousel {
+    display: block;
+    position: relative;
+    width: 100%;
+    max-width: 420px;
+    min-width: 0;
+    margin-inline: auto;
+  }
+  .instagram-carousel-arrows {
+    position: absolute;
+    inset: 0 0 auto;
+    aspect-ratio: 9 / 16;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem;
+    pointer-events: none;
+  }
+  .instagram-carousel-arrow {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: 1px solid var(--gold);
+    border-radius: 50%;
+    background: rgba(22, 35, 29, 0.8);
+    color: var(--paper);
+    font-size: 1.5rem;
+    line-height: 1;
+    cursor: pointer;
+    pointer-events: auto;
+  }
+  .instagram-carousel-arrow--next {
+    margin-left: auto;
+  }
+  .instagram-carousel-dots {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.25rem;
+  }
+  .instagram-carousel-dot {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+  }
+  .instagram-carousel-dot::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--line);
+  }
+  .instagram-carousel-dot[aria-current="true"]::before {
+    background: var(--gold);
   }
   .social-media-group + .social-media-group {
     margin-top: 3.5rem;
